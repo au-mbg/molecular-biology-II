@@ -1,0 +1,10 @@
+project:
+  title: "chip_seq_2026"
+  output-dir: "_render/"
+
+
+
+format:
+  html: default
+  ipynb: default
+

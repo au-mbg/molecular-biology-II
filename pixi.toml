@@ -10,6 +10,7 @@ notebook = "*"
 pandas = "*"
 matplotlib = "*"
 quarto = ">=1.9.38,<2"
+biopython = ">=1.87,<2"
 
 
 [feature.bioinformatics.dependencies]
@@ -32,3 +33,6 @@ check-tools = "which bowtie2 && which samtools && which bedtools && which macs3 
 [tasks.preview]
 cmd = "quarto preview chip_seq_2026.qmd --to html"
 cwd = "quarto"
+
+[pypi-dependencies]
+course-utils = { path = "course-utils", editable = true }

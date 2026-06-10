@@ -1,0 +1,185 @@
+---
+title: "ChiP-seq 2026"
+---
+
+```{python}
+import pandas as pd
+import matplotlib.pyplot as plt
+from matplotlib.ticker import FormatStrFormatter
+```
+
+```{python}
+try:
+    import course_utils
+except:
+    !pip install "course-utils @ git+https://github.com/au-mbg/molecular-biology-II.git#subdirectory=course-utils"
+```
+
+## Welcome to your first Bioinformatics Lab!
+
+Right now you are in the lab working with the transcription factor TBP. You have one week to scratch the surface of cloning TBP.
+
+The work of a real-life researcher does not end after investigating their target transcription factor for one week in the lab. Instead, many researchers rely on using bioinformatic tools to learn much more about their target.
+
+This exercise shows what a real-life researcher might do to understand the mechanism of the transcription factor TBP even more. You will work with a real dataset from a ChIP-seq experiment investigating which sites on the humane genome TBP binds.
+
+## How to complete this notebook
+
+Throughout the exercise, you will answer 7 questions. The right answer will give you letters, numbers or symbols. **Note these down as you go and complete the exercise by entering the correct code at the end.**
+
+### Question 1 
+
+You have been handed out a paper with components of a full figure illustrating the ChIP-seq workflow. However the headlines and the order have been scrambled. Please cut out each step and sort them in the correct order. **Note down the purple letters in the order you created**.
+
+```{python}
+# Note the purple letters here
+q1_answer = ""
+```
+
+## Peak analysis
+The code above takes all the sequenced reads as input and aligns them to the genome, matching the sequence of each read to the corresponding sequence in the genomic DNA. The number of reads binding to specific regions of the genome is then quantified and visualized as peaks in a graph. Each cluster of peaks represents a potential binding site for TBP.
+
+```{python}
+import pandas as pd
+
+summits = pd.read_csv('https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_summits.bed',
+                      sep='\t', 
+                      header=None, 
+                      names=["chrom", "start", "end", "name", "score"])
+
+summits.head()
+```
+
+```{python}
+fig, ax = plt.subplots(figsize=(10, 6))
+
+ax.vlines(
+    x=summits["start"],
+    ymin=0,
+    ymax=summits["score"],
+    linewidth=0.8,
+    color='black'
+)
+
+ax.set_title("ChIP Peaks over region - TBP", loc="left")
+ax.set_xlabel("Chromosome Size (bp)")
+ax.set_ylabel("")
+
+ax.set_xlim(0, 10_000_000)
+ax.set_ylim(0, summits["score"].max() * 1.05)
+
+ax.set_xticks([0, 2_500_000, 5_000_000, 7_500_000, 10_000_000])
+ax.xaxis.set_major_formatter(FormatStrFormatter("%.1e"))
+
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+plt.tight_layout()
+plt.show()
+```
+
+Use the graph to answer the following questions:
+
+### Question 2: 
+
+What does a high peak at a binding site typically indicate compared to a low peak? Note the symbol that corresponds to the correct option below.
+
+%) A high peak indicates that fewer reads were aligned to the binding site, suggesting weaker binding affinity of the protein at that site.
+
+!) A high peak suggests a strong enrichment or binding affinity at that site, meaning more sequencing reads aligned to this region.
+
+?) A high peak represents a control region where the protein does not bind, while a low peak represents an area of high binding affinity.
+
+") There is no difference between high and low peaks; all peaks represent equal binding affinity.
+
+```{python}
+# Note the answer symbol here
+q2_answer = ""
+```
+
+### Question 3: 
+
+How many regions have a peak intensity of more than 150?
+
+```{python}
+# Note the answer symbol here
+q3_answer = ""
+```
+
+## Analysis of TBP binding sites
+
+### Question 4: 
+
+Which region is found **closest to the start** of a gene and helps initiate transcription?
+
+   A) Promoter (<=1kb)
+
+   B) 3' UTR
+
+   C) Other Exon
+
+```{python}
+# Note the answer symbol here
+q4_answer = ""
+```
+
+### Question 5: 
+
+Which region is typically found **far from any known genes** and may or may not be involved in gene expression?
+
+   A) 1st Exon
+
+   B) Promoter (2-3kb)
+
+   C) Distal Intergenic
+
+```{python}
+# Note the answer symbol here
+q5_answer = ""
+```
+
+### Question 6: 
+
+Which region is located **after the coding sequence** of a gene and can impact mRNA stability?
+
+   A) Promoter (1-2kb)
+
+   B) 3' UTR
+
+   C) 1st Intron
+
+```{python}
+# Note the answer symbol here
+q6_answer = ""
+```
+
+### Question 7: 
+
+What kind of genomic element does TBP mostly bind to?
+
+   A) Promoter (<=1kb)
+
+   B) Downstream (<=300)
+
+   C) Other Exon
+
+
+```{python}
+# Note the answer symbol here
+q7_answer = ""
+```
+
+## Check your answers
+
+You have now answered all 7 questions. Run the next codecell and check to see if your answers are correct.
+
+<!-- The correct code is: CAEDB!1ACBA -->
+```{python}
+from course_utils import check_answer
+
+# Put your answer here
+answers = [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]
+answer = "".join(answers)
+
+check_answer(answer)
+```
