@@ -3,6 +3,9 @@ project:
   output-dir: "_render/"
 
 
+filters:
+- strip-solution
+
 
 format:
   html: default

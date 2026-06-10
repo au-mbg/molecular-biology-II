@@ -31,7 +31,8 @@ notebook = "jupyter notebook"
 check-tools = "which bowtie2 && which samtools && which bedtools && which macs3 && R --version"
 
 [tasks.preview]
-cmd = "quarto preview chip_seq_2026.qmd --to html"
+args = [{"arg" = "profile", default = "exercise" }]
+cmd = "quarto preview chip_seq_2026.qmd --to html --profile {{ profile }}"
 cwd = "quarto"
 
 [pypi-dependencies]

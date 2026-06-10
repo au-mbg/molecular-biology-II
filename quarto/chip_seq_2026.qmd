@@ -32,8 +32,15 @@ Throughout the exercise, you will answer 7 questions. The right answer will give
 You have been handed out a paper with components of a full figure illustrating the ChIP-seq workflow. However the headlines and the order have been scrambled. Please cut out each step and sort them in the correct order. **Note down the purple letters in the order you created**.
 
 ```{python}
+#| teaching: exercise
 # Note the purple letters here
 q1_answer = ""
+```
+
+```{python}
+#| teaching: solution
+# Note the purple letters here
+q1_answer = "CAEDB"
 ```
 
 ## Peak analysis
@@ -93,8 +100,15 @@ What does a high peak at a binding site typically indicate compared to a low pea
 ") There is no difference between high and low peaks; all peaks represent equal binding affinity.
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
 q2_answer = ""
+```
+
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q2_answer = "!"
 ```
 
 ### Question 3: 
@@ -102,11 +116,92 @@ q2_answer = ""
 How many regions have a peak intensity of more than 150?
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
 q3_answer = ""
 ```
 
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q3_answer = "1"
+```
+
 ## Analysis of TBP binding sites
+
+```{python}
+annotations = pd.read_csv("https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_peak_annotations.csv")
+
+annotations.head()
+```
+
+```{python}
+feature_order = [
+    "Promoter (<=1kb)",
+    "Promoter (1-2kb)",
+    "Promoter (2-3kb)",
+    "3' UTR",
+    "1st Exon",
+    "Other Exon",
+    "1st Intron",
+    "Other Intron",
+    "Downstream (<=300)",
+    "Distal Intergenic",
+]
+
+counts = annotations["feature_simplified"].value_counts()
+percentages = counts / counts.sum() * 100
+percentages = percentages.reindex(feature_order, fill_value=0)
+```
+
+```{python}
+colors = {
+    "Promoter (<=1kb)": "#a6cee3",
+    "Promoter (1-2kb)": "#1f78b4",
+    "Promoter (2-3kb)": "#b2df8a",
+    "3' UTR": "#33a02c",
+    "1st Exon": "#fb9a99",
+    "Other Exon": "#e31a1c",
+    "1st Intron": "#fdbf6f",
+    "Other Intron": "#ff7f00",
+    "Downstream (<=300)": "#cab2d6",
+    "Distal Intergenic": "#6a3d9a",
+}
+
+fig, ax = plt.subplots(figsize=(9, 7))
+
+left = 0
+for feature, percentage in percentages.items():
+    ax.barh(
+        y=["TBP"],
+        width=percentage,
+        left=left,
+        color=colors[feature],
+        label=feature,
+        height=0.5,
+    )
+    left += percentage
+
+ax.set_title("Feature Distribution", loc="left", fontsize=20)
+ax.set_xlabel("Percentage(%)", fontsize=14)
+ax.set_xlim(0, 105)
+ax.set_xticks([0, 25, 50, 75, 100])
+ax.set_ylabel("")
+
+ax.legend(
+    title="Feature",
+    bbox_to_anchor=(1.02, 0.5),
+    loc="center left",
+    frameon=False,
+)
+
+ax.grid(axis="x", alpha=0.3)
+ax.set_axisbelow(True)
+
+plt.tight_layout()
+plt.show()
+```
+
 
 ### Question 4: 
 
@@ -119,9 +214,17 @@ Which region is found **closest to the start** of a gene and helps initiate tran
    C) Other Exon
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
-q4_answer = ""
+q4_answer = "" 
 ```
+
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q4_answer = "A"
+```
+
 
 ### Question 5: 
 
@@ -134,9 +237,17 @@ Which region is typically found **far from any known genes** and may or may not 
    C) Distal Intergenic
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
 q5_answer = ""
 ```
+
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q5_answer = "C"
+```
+
 
 ### Question 6: 
 
@@ -149,8 +260,15 @@ Which region is located **after the coding sequence** of a gene and can impact m
    C) 1st Intron
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
 q6_answer = ""
+```
+
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q6_answer = "B"
 ```
 
 ### Question 7: 
@@ -165,9 +283,17 @@ What kind of genomic element does TBP mostly bind to?
 
 
 ```{python}
+#| teaching: exercise
 # Note the answer symbol here
 q7_answer = ""
 ```
+
+```{python}
+#| teaching: solution
+# Note the answer symbol here
+q7_answer = "A"
+```
+
 
 ## Check your answers
 
@@ -175,11 +301,10 @@ You have now answered all 7 questions. Run the next codecell and check to see if
 
 <!-- The correct code is: CAEDB!1ACBA -->
 ```{python}
+#| eval: false
 from course_utils import check_answer
 
 # Put your answer here
 answers = [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]
-answer = "".join(answers)
-
-check_answer(answer)
+check_answer(answers)
 ```
