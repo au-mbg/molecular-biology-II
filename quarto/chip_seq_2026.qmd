@@ -43,23 +43,60 @@ q1_answer = ""
 q1_answer = "CAEDB"
 ```
 
+## ChiP-seq workflow
+
+![Diagram of ChiP-seq workflow starting from the reference genome and reads](_diagrams/diagram1.png){fig-align="center" .lightbox #fig-diagram1}
+
+Diagram @fig-diagram1 shows the processing of ChIP-seq data. It uses 
+several programs to processes the data
+
+- [Bowtie2](https://bowtie-bio.sourceforge.net/bowtie2/index.shtml): aligns the short DNA sequences obtained from sequencing, called reads, to a reference genome. The result describes where each read most likely originated in the genome.
+- [Samtools](https://github.com/samtools/samtools): processes the resulting sequence alignments. In this workflow, it is used to filter out uncertain alignments, sort the remaining reads by genomic position, and create an indexed BAM file that can be accessed efficiently.
+- [MACS3](https://macs3-project.github.io/MACS/): identifies genomic regions in which unusually many aligned reads accumulate. These enriched regions are called peaks and represent candidate locations where TBP was bound to the DNA. MACS3 also identifies the summit of each peak, corresponding to the position with the strongest signal.
+- [ChIPseeker](https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html): compares the called peaks with known gene annotations. It classifies peaks according to the genomic features they are associated with, such as promoters, exons, introns, and intergenic regions. 
+
+The computationally demanding preprocessing has already been carried out. In this exercise, you will use Python to load the resulting files, visualise the locations of the peaks, summarise their genomic annotations, and interpret the results.
+
+Diagram @fig-diagram2 shows the part of the workflow that you will perform yourself.
+
+![Diagram of analysis of processed ChiP-seq data](_diagrams/diagram2.png){fig-align="center" .lightbox #fig-diagram2}
+
 ## Peak analysis
 The code above takes all the sequenced reads as input and aligns them to the genome, matching the sequence of each read to the corresponding sequence in the genomic DNA. The number of reads binding to specific regions of the genome is then quantified and visualized as peaks in a graph. Each cluster of peaks represents a potential binding site for TBP.
 
-```{python}
-import pandas as pd
+The cell below loads the `TBP_summits.bed` as a dataframe.
 
+```{python}
+#| teaching: exercise
+#| eval: false
 summits = pd.read_csv('https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_summits.bed',
                       sep='\t', 
                       header=None, 
                       names=["chrom", "start", "end", "name", "score"])
 
-summits.head()
+display(summits)
 ```
 
 ```{python}
+#| teaching: solution
+summits = pd.read_csv('https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_summits.bed',
+                      sep='\t', 
+                      header=None, 
+                      names=["chrom", "start", "end", "name", "score"])
+
+display(summits)
+```
+
+The following cell creates a plot with the chromosome size on the x-axis and the peak score on the y-axis. 
+
+```{python}
+#| teaching: exercise
+#| eval: false
+# Create figure and axis to make the plot.
 fig, ax = plt.subplots(figsize=(10, 6))
 
+# Plot the data - this creates a vertical (vline) at each "start"-position
+# the line starts at 0 and goes to "score".
 ax.vlines(
     x=summits["start"],
     ymin=0,
@@ -68,22 +105,57 @@ ax.vlines(
     color='black'
 )
 
+# Customization: Title & axis labels
 ax.set_title("ChIP Peaks over region - TBP", loc="left")
 ax.set_xlabel("Chromosome Size (bp)")
 ax.set_ylabel("")
 
+# Customization: Axis limits & ticks
 ax.set_xlim(0, 10_000_000)
 ax.set_ylim(0, summits["score"].max() * 1.05)
-
 ax.set_xticks([0, 2_500_000, 5_000_000, 7_500_000, 10_000_000])
 ax.xaxis.set_major_formatter(FormatStrFormatter("%.1e"))
 
+# Customization: Spines & layout
 ax.spines["top"].set_visible(False)
 ax.spines["right"].set_visible(False)
-
 plt.tight_layout()
 plt.show()
 ```
+
+```{python}
+#| teaching: solution
+# Create figure and axis to make the plot.
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plot the data - this creates a vertical (vline) at each "start"-position
+# the line starts at 0 and goes to "score".
+ax.vlines(
+    x=summits["start"],
+    ymin=0,
+    ymax=summits["score"],
+    linewidth=0.8,
+    color='black'
+)
+
+# Customization: Title & axis labels
+ax.set_title("ChIP Peaks over region - TBP", loc="left")
+ax.set_xlabel("Chromosome Size (bp)")
+ax.set_ylabel("")
+
+# Customization: Axis limits & ticks
+ax.set_xlim(0, 10_000_000)
+ax.set_ylim(0, summits["score"].max() * 1.05)
+ax.set_xticks([0, 2_500_000, 5_000_000, 7_500_000, 10_000_000])
+ax.xaxis.set_major_formatter(FormatStrFormatter("%.1e"))
+
+# Customization: Spines & layout
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+plt.tight_layout()
+plt.show()
+```
+
 
 Use the graph to answer the following questions:
 
@@ -91,13 +163,13 @@ Use the graph to answer the following questions:
 
 What does a high peak at a binding site typically indicate compared to a low peak? Note the symbol that corresponds to the correct option below.
 
-%) A high peak indicates that fewer reads were aligned to the binding site, suggesting weaker binding affinity of the protein at that site.
+   %) A high peak indicates that fewer reads were aligned to the binding site, suggesting weaker binding affinity of the protein at that site.
 
-!) A high peak suggests a strong enrichment or binding affinity at that site, meaning more sequencing reads aligned to this region.
+   !) A high peak suggests a strong enrichment or binding affinity at that site, meaning more sequencing reads aligned to this region.
 
-?) A high peak represents a control region where the protein does not bind, while a low peak represents an area of high binding affinity.
+   ?) A high peak represents a control region where the protein does not bind, while a low peak represents an area of high binding affinity.
 
-") There is no difference between high and low peaks; all peaks represent equal binding affinity.
+   ") There is no difference between high and low peaks; all peaks represent equal binding affinity.
 
 ```{python}
 #| teaching: exercise
@@ -129,13 +201,28 @@ q3_answer = "1"
 
 ## Analysis of TBP binding sites
 
+Next we load the peak annotation data produced by ChIPseeker.
+
 ```{python}
+#| teaching: exercise
+#| eval: false
 annotations = pd.read_csv("https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_peak_annotations.csv")
 
 annotations.head()
 ```
 
 ```{python}
+#| teaching: solution
+annotations = pd.read_csv("https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_peak_annotations.csv")
+
+annotations.head()
+```
+
+Then we define the features we are interested in and calculate percentages. 
+
+```{python}
+#| teaching: exercise
+#| eval: false
 feature_order = [
     "Promoter (<=1kb)",
     "Promoter (1-2kb)",
@@ -155,6 +242,31 @@ percentages = percentages.reindex(feature_order, fill_value=0)
 ```
 
 ```{python}
+#| teaching: solution
+feature_order = [
+    "Promoter (<=1kb)",
+    "Promoter (1-2kb)",
+    "Promoter (2-3kb)",
+    "3' UTR",
+    "1st Exon",
+    "Other Exon",
+    "1st Intron",
+    "Other Intron",
+    "Downstream (<=300)",
+    "Distal Intergenic",
+]
+
+counts = annotations["feature_simplified"].value_counts()
+percentages = counts / counts.sum() * 100
+percentages = percentages.reindex(feature_order, fill_value=0)
+```
+
+Finally we make a plot of the features
+
+```{python}
+#| teaching: exercise
+#| eval: false
+# Pick colors for each feature
 colors = {
     "Promoter (<=1kb)": "#a6cee3",
     "Promoter (1-2kb)": "#1f78b4",
@@ -167,9 +279,13 @@ colors = {
     "Downstream (<=300)": "#cab2d6",
     "Distal Intergenic": "#6a3d9a",
 }
-
+# Create figure and axis
 fig, ax = plt.subplots(figsize=(9, 7))
 
+# Plot the percentage of each feature as a horizontal bar. 
+# The width of the bar is the percentage of that feature and 
+# it starts at the cummulative percentage of all previous features, 
+# stored in the variable left.
 left = 0
 for feature, percentage in percentages.items():
     ax.barh(
@@ -182,12 +298,14 @@ for feature, percentage in percentages.items():
     )
     left += percentage
 
+# Customization: Title, limits and labels
 ax.set_title("Feature Distribution", loc="left", fontsize=20)
 ax.set_xlabel("Percentage(%)", fontsize=14)
+ax.set_ylabel("")
 ax.set_xlim(0, 105)
 ax.set_xticks([0, 25, 50, 75, 100])
-ax.set_ylabel("")
 
+# Customization: Legend with feature names <-> colors.
 ax.legend(
     title="Feature",
     bbox_to_anchor=(1.02, 0.5),
@@ -195,9 +313,63 @@ ax.legend(
     frameon=False,
 )
 
-ax.grid(axis="x", alpha=0.3)
+# Customization: Layout
 ax.set_axisbelow(True)
+plt.tight_layout()
+plt.show()
+```
 
+```{python}
+#| teaching: solution
+# Pick colors for each feature
+colors = {
+    "Promoter (<=1kb)": "#a6cee3",
+    "Promoter (1-2kb)": "#1f78b4",
+    "Promoter (2-3kb)": "#b2df8a",
+    "3' UTR": "#33a02c",
+    "1st Exon": "#fb9a99",
+    "Other Exon": "#e31a1c",
+    "1st Intron": "#fdbf6f",
+    "Other Intron": "#ff7f00",
+    "Downstream (<=300)": "#cab2d6",
+    "Distal Intergenic": "#6a3d9a",
+}
+# Create figure and axis
+fig, ax = plt.subplots(figsize=(9, 7))
+
+# Plot the percentage of each feature as a horizontal bar. 
+# The width of the bar is the percentage of that feature and 
+# it starts at the cummulative percentage of all previous features, 
+# stored in the variable left.
+left = 0
+for feature, percentage in percentages.items():
+    ax.barh(
+        y=["TBP"],
+        width=percentage,
+        left=left,
+        color=colors[feature],
+        label=feature,
+        height=0.5,
+    )
+    left += percentage
+
+# Customization: Title, limits and labels
+ax.set_title("Feature Distribution", loc="left", fontsize=20)
+ax.set_xlabel("Percentage(%)", fontsize=14)
+ax.set_ylabel("")
+ax.set_xlim(0, 105)
+ax.set_xticks([0, 25, 50, 75, 100])
+
+# Customization: Legend with feature names <-> colors.
+ax.legend(
+    title="Feature",
+    bbox_to_anchor=(1.02, 0.5),
+    loc="center left",
+    frameon=False,
+)
+
+# Customization: Layout
+ax.set_axisbelow(True)
 plt.tight_layout()
 plt.show()
 ```
@@ -297,14 +469,22 @@ q7_answer = "A"
 
 ## Check your answers
 
-You have now answered all 7 questions. Run the next codecell and check to see if your answers are correct.
+You have now answered all 7 questions. Run the next code cell and check to see if your answers are correct.
 
 <!-- The correct code is: CAEDB!1ACBA -->
 ```{python}
+#| teaching: exercise
 #| eval: false
 from course_utils import check_answer
 
-# Put your answer here
+answers = [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]
+check_answer(answers)
+```
+
+```{python}
+#| teaching: solution
+from course_utils import check_answer
+
 answers = [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]
 check_answer(answers)
 ```

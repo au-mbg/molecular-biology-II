@@ -35,5 +35,14 @@ args = [{"arg" = "profile", default = "exercise" }]
 cmd = "quarto preview chip_seq_2026.qmd --to html --profile {{ profile }}"
 cwd = "quarto"
 
+[tasks.render]
+args = [{"arg" = "profile", default = "exercise" }]
+cmd = "quarto render chip_seq_2026.qmd --profile {{ profile }}"
+cwd = "quarto"
+
+[tasks.render-all]
+depends-on = [{task="render", args=["exercise"]}, {task="render", args=["solution"]}]
+
 [pypi-dependencies]
 course-utils = { path = "course-utils", editable = true }
+mermaid-cli = ">=0.1.3, <0.2"

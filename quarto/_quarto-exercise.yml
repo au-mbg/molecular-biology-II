@@ -1,2 +1,5 @@
+project:
+  output-dir: _render/exercise/
+
 teaching:
   show-solutions: false

@@ -72,6 +72,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="chip_seq_2026_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="chip_seq_2026_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="chip_seq_2026_files/libs/bootstrap/bootstrap-917079515d91bccb85b543faf8aa8bb6.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="chip_seq_2026_files/libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="chip_seq_2026_files/libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="chip_seq_2026_files/libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
 
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
@@ -83,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="chip_seq_2026.ipynb" download="chip_seq_2026.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li></ul></div></div>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="chip_seq_2026.ipynb" download="chip_seq_2026.ipynb"><i class="bi bi-journal-code"></i>Jupyter</a></li><li><a href="chip_seq_2026.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -105,12 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="660f86d7" class="cell" data-execution_count="1">
+<div id="ef1913fe" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.ticker <span class="im">import</span> FormatStrFormatter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="3cf4bd16" class="cell" data-execution_count="2">
+<div id="fbf63bfb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> course_utils</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
@@ -128,25 +131,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="question-1" class="level3">
 <h3 class="anchored" data-anchor-id="question-1">Question 1</h3>
 <p>You have been handed out a paper with components of a full figure illustrating the ChIP-seq workflow. However the headlines and the order have been scrambled. Please cut out each step and sort them in the correct order. <strong>Note down the purple letters in the order you created</strong>.</p>
-<div id="1042ead5" class="cell" data-teaching="exercise" data-execution_count="3">
+<div id="d998d241" class="cell" data-teaching="solution" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the purple letters here</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>q1_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>q1_answer <span class="op">=</span> <span class="st">"CAEDB"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
+</section>
+<section id="chip-seq-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="chip-seq-workflow">ChiP-seq workflow</h2>
+<div id="fig-diagram1" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="_diagrams/diagram1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1: Diagram of ChiP-seq workflow starting from the reference genome and reads"><img src="_diagrams/diagram1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Diagram of ChiP-seq workflow starting from the reference genome and reads
+</figcaption>
+</figure>
+</div>
+<p>Diagram <a href="#fig-diagram1" class="quarto-xref">Figure&nbsp;1</a> shows the processing of ChIP-seq data. It uses several programs to processes the data</p>
+<ul>
+<li><a href="https://bowtie-bio.sourceforge.net/bowtie2/index.shtml">Bowtie2</a>: aligns the short DNA sequences obtained from sequencing, called reads, to a reference genome. The result describes where each read most likely originated in the genome.</li>
+<li><a href="https://github.com/samtools/samtools">Samtools</a>: processes the resulting sequence alignments. In this workflow, it is used to filter out uncertain alignments, sort the remaining reads by genomic position, and create an indexed BAM file that can be accessed efficiently.</li>
+<li><a href="https://macs3-project.github.io/MACS/">MACS3</a>: identifies genomic regions in which unusually many aligned reads accumulate. These enriched regions are called peaks and represent candidate locations where TBP was bound to the DNA. MACS3 also identifies the summit of each peak, corresponding to the position with the strongest signal.</li>
+<li><a href="https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html">ChIPseeker</a>: compares the called peaks with known gene annotations. It classifies peaks according to the genomic features they are associated with, such as promoters, exons, introns, and intergenic regions.</li>
+</ul>
+<p>The computationally demanding preprocessing has already been carried out. In this exercise, you will use Python to load the resulting files, visualise the locations of the peaks, summarise their genomic annotations, and interpret the results.</p>
+<p>Diagram <a href="#fig-diagram2" class="quarto-xref">Figure&nbsp;2</a> shows the part of the workflow that you will perform yourself.</p>
+<div id="fig-diagram2" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diagram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="_diagrams/diagram2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;2: Diagram of analysis of processed ChiP-seq data"><img src="_diagrams/diagram2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diagram2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Diagram of analysis of processed ChiP-seq data
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="peak-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="peak-analysis">Peak analysis</h2>
 <p>The code above takes all the sequenced reads as input and aligns them to the genome, matching the sequence of each read to the corresponding sequence in the genomic DNA. The number of reads binding to specific regions of the genome is then quantified and visualized as peaks in a graph. Each cluster of peaks represents a potential binding site for TBP.</p>
-<div id="c767f2ee" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>summits <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_summits.bed'</span>,</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                      sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                      header<span class="op">=</span><span class="va">None</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                      names<span class="op">=</span>[<span class="st">"chrom"</span>, <span class="st">"start"</span>, <span class="st">"end"</span>, <span class="st">"name"</span>, <span class="st">"score"</span>])</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>summits.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="320">
+<p>The cell below loads the <code>TBP_summits.bed</code> as a dataframe.</p>
+<div id="28e9c03f" class="cell" data-teaching="solution" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>summits <span class="op">=</span> pd.read_csv(<span class="st">'https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_summits.bed'</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                      header<span class="op">=</span><span class="va">None</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                      names<span class="op">=</span>[<span class="st">"chrom"</span>, <span class="st">"start"</span>, <span class="st">"end"</span>, <span class="st">"name"</span>, <span class="st">"score"</span>])</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>display(summits)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
 <div>
 
 
@@ -202,42 +236,96 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>TBP_peak_5</td>
 <td>7.54076</td>
 </tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">...</th>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">239</th>
+<td>NC_000001.11</td>
+<td>9823863</td>
+<td>9823864</td>
+<td>TBP_peak_240</td>
+<td>12.44700</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">240</th>
+<td>NC_000001.11</td>
+<td>9910703</td>
+<td>9910704</td>
+<td>TBP_peak_241</td>
+<td>32.66850</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">241</th>
+<td>NC_000001.11</td>
+<td>9929563</td>
+<td>9929564</td>
+<td>TBP_peak_242</td>
+<td>14.32990</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">242</th>
+<td>NC_000001.11</td>
+<td>9943477</td>
+<td>9943478</td>
+<td>TBP_peak_243</td>
+<td>130.52500</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">243</th>
+<td>NC_000001.11</td>
+<td>9950536</td>
+<td>9950537</td>
+<td>TBP_peak_244</td>
+<td>9.65460</td>
+</tr>
 </tbody>
 </table>
 
+<p>244 rows × 5 columns</p>
 </div>
 </div>
 </div>
-<div id="693791c6" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax.vlines(</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>summits[<span class="st">"start"</span>],</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    ymin<span class="op">=</span><span class="dv">0</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    ymax<span class="op">=</span>summits[<span class="st">"score"</span>],</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">0.8</span>,</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'black'</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"ChIP Peaks over region - TBP"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Chromosome Size (bp)"</span>)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">10_000_000</span>)</span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, summits[<span class="st">"score"</span>].<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.05</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, <span class="dv">2_500_000</span>, <span class="dv">5_000_000</span>, <span class="dv">7_500_000</span>, <span class="dv">10_000_000</span>])</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(FormatStrFormatter(<span class="st">"</span><span class="sc">%.1e</span><span class="st">"</span>))</span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The following cell creates a plot with the chromosome size on the x-axis and the peak score on the y-axis.</p>
+<div id="a3b08290" class="cell" data-teaching="solution" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure and axis to make the plot.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data - this creates a vertical (vline) at each "start"-position</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># the line starts at 0 and goes to "score".</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>ax.vlines(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>summits[<span class="st">"start"</span>],</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    ymin<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    ymax<span class="op">=</span>summits[<span class="st">"score"</span>],</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    linewidth<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span><span class="st">'black'</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Title &amp; axis labels</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"ChIP Peaks over region - TBP"</span>, loc<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Chromosome Size (bp)"</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Axis limits &amp; ticks</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">10_000_000</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="dv">0</span>, summits[<span class="st">"score"</span>].<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.05</span>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, <span class="dv">2_500_000</span>, <span class="dv">5_000_000</span>, <span class="dv">7_500_000</span>, <span class="dv">10_000_000</span>])</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(FormatStrFormatter(<span class="st">"</span><span class="sc">%.1e</span><span class="st">"</span>))</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Spines &amp; layout</span></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"top"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>ax.spines[<span class="st">"right"</span>].set_visible(<span class="va">False</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chip_seq_2026_files/figure-html/cell-7-output-1.png" width="950" height="564" class="figure-img"></p>
+<p><img src="chip_seq_2026_files/figure-html/cell-9-output-1.png" width="950" height="564" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -250,27 +338,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>!) A high peak suggests a strong enrichment or binding affinity at that site, meaning more sequencing reads aligned to this region.</p>
 <p>?) A high peak represents a control region where the protein does not bind, while a low peak represents an area of high binding affinity.</p>
 <p>“) There is no difference between high and low peaks; all peaks represent equal binding affinity.</p>
-<div id="9170a934" class="cell" data-teaching="exercise" data-execution_count="7">
+<div id="c3979e0c" class="cell" data-teaching="solution" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>q2_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>q2_answer <span class="op">=</span> <span class="st">"!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-3" class="level3">
 <h3 class="anchored" data-anchor-id="question-3">Question 3:</h3>
 <p>How many regions have a peak intensity of more than 150?</p>
-<div id="4af8263d" class="cell" data-teaching="exercise" data-execution_count="9">
+<div id="6c4607b8" class="cell" data-teaching="solution" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>q3_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>q3_answer <span class="op">=</span> <span class="st">"1"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
 <section id="analysis-of-tbp-binding-sites" class="level2">
 <h2 class="anchored" data-anchor-id="analysis-of-tbp-binding-sites">Analysis of TBP binding sites</h2>
-<div id="3f3ef34c" class="cell" data-execution_count="11">
+<p>Next we load the peak annotation data produced by ChIPseeker.</p>
+<div id="2b1a35a6" class="cell" data-teaching="solution" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>annotations <span class="op">=</span> pd.read_csv(<span class="st">"https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/data/TBP_peak_annotations.csv"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>annotations.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="326">
+<div class="cell-output cell-output-display" data-execution_count="77">
 <div>
 
 
@@ -404,7 +493,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<div id="2640b4f5" class="cell" data-execution_count="12">
+<p>Then we define the features we are interested in and calculate percentages.</p>
+<div id="55502ed0" class="cell" data-teaching="solution" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>feature_order <span class="op">=</span> [</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (&lt;=1kb)"</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (1-2kb)"</span>,</span>
@@ -422,56 +512,63 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>percentages <span class="op">=</span> counts <span class="op">/</span> counts.<span class="bu">sum</span>() <span class="op">*</span> <span class="dv">100</span></span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>percentages <span class="op">=</span> percentages.reindex(feature_order, fill_value<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c4ec95aa" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (&lt;=1kb)"</span>: <span class="st">"#a6cee3"</span>,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (1-2kb)"</span>: <span class="st">"#1f78b4"</span>,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (2-3kb)"</span>: <span class="st">"#b2df8a"</span>,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3' UTR"</span>: <span class="st">"#33a02c"</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1st Exon"</span>: <span class="st">"#fb9a99"</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Other Exon"</span>: <span class="st">"#e31a1c"</span>,</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1st Intron"</span>: <span class="st">"#fdbf6f"</span>,</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Other Intron"</span>: <span class="st">"#ff7f00"</span>,</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downstream (&lt;=300)"</span>: <span class="st">"#cab2d6"</span>,</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distal Intergenic"</span>: <span class="st">"#6a3d9a"</span>,</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">7</span>))</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature, percentage <span class="kw">in</span> percentages.items():</span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>    ax.barh(</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[<span class="st">"TBP"</span>],</span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        width<span class="op">=</span>percentage,</span>
-<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        left<span class="op">=</span>left,</span>
-<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>colors[feature],</span>
-<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>feature,</span>
-<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        height<span class="op">=</span><span class="fl">0.5</span>,</span>
-<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    left <span class="op">+=</span> percentage</span>
-<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Feature Distribution"</span>, loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Percentage(%)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
-<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">105</span>)</span>
-<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">100</span>])</span>
-<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
-<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>ax.legend(</span>
-<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Feature"</span>,</span>
-<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    bbox_to_anchor<span class="op">=</span>(<span class="fl">1.02</span>, <span class="fl">0.5</span>),</span>
-<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    loc<span class="op">=</span><span class="st">"center left"</span>,</span>
-<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    frameon<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>ax.grid(axis<span class="op">=</span><span class="st">"x"</span>, alpha<span class="op">=</span><span class="fl">0.3</span>)</span>
-<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
-<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally we make a plot of the features</p>
+<div id="4cb93cd1" class="cell" data-teaching="solution" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick colors for each feature</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (&lt;=1kb)"</span>: <span class="st">"#a6cee3"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (1-2kb)"</span>: <span class="st">"#1f78b4"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Promoter (2-3kb)"</span>: <span class="st">"#b2df8a"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"3' UTR"</span>: <span class="st">"#33a02c"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1st Exon"</span>: <span class="st">"#fb9a99"</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Other Exon"</span>: <span class="st">"#e31a1c"</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"1st Intron"</span>: <span class="st">"#fdbf6f"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Other Intron"</span>: <span class="st">"#ff7f00"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Downstream (&lt;=300)"</span>: <span class="st">"#cab2d6"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Distal Intergenic"</span>: <span class="st">"#6a3d9a"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure and axis</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">9</span>, <span class="dv">7</span>))</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the percentage of each feature as a horizontal bar. </span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="co"># The width of the bar is the percentage of that feature and </span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="co"># it starts at the cummulative percentage of all previous features, </span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># stored in the variable left.</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> feature, percentage <span class="kw">in</span> percentages.items():</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>    ax.barh(</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[<span class="st">"TBP"</span>],</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>        width<span class="op">=</span>percentage,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>        left<span class="op">=</span>left,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>colors[feature],</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span>feature,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>        height<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>    left <span class="op">+=</span> percentage</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Title, limits and labels</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Feature Distribution"</span>, loc<span class="op">=</span><span class="st">"left"</span>, fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Percentage(%)"</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">""</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>ax.set_xlim(<span class="dv">0</span>, <span class="dv">105</span>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>ax.set_xticks([<span class="dv">0</span>, <span class="dv">25</span>, <span class="dv">50</span>, <span class="dv">75</span>, <span class="dv">100</span>])</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Legend with feature names &lt;-&gt; colors.</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>ax.legend(</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">"Feature"</span>,</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>    bbox_to_anchor<span class="op">=</span>(<span class="fl">1.02</span>, <span class="fl">0.5</span>),</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    loc<span class="op">=</span><span class="st">"center left"</span>,</span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    frameon<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Customization: Layout</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>ax.set_axisbelow(<span class="va">True</span>)</span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="chip_seq_2026_files/figure-html/cell-14-output-1.png" width="853" height="661" class="figure-img"></p>
+<p><img src="chip_seq_2026_files/figure-html/cell-19-output-1.png" width="853" height="661" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -484,9 +581,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>3’ UTR</p></li>
 <li><p>Other Exon</p></li>
 </ol>
-<div id="6cd58302" class="cell" data-teaching="exercise" data-execution_count="14">
+<div id="598efb31" class="cell" data-teaching="solution" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>q4_answer <span class="op">=</span> <span class="st">""</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>q4_answer <span class="op">=</span> <span class="st">"A"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-5" class="level3">
@@ -497,9 +594,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Promoter (2-3kb)</p></li>
 <li><p>Distal Intergenic</p></li>
 </ol>
-<div id="521712c7" class="cell" data-teaching="exercise" data-execution_count="16">
+<div id="a6c5036f" class="cell" data-teaching="solution" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>q5_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>q5_answer <span class="op">=</span> <span class="st">"C"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-6" class="level3">
@@ -510,9 +607,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>3’ UTR</p></li>
 <li><p>1st Intron</p></li>
 </ol>
-<div id="07817f88" class="cell" data-teaching="exercise" data-execution_count="18">
+<div id="4df32e51" class="cell" data-teaching="solution" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>q6_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>q6_answer <span class="op">=</span> <span class="st">"B"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="question-7" class="level3">
@@ -523,22 +620,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Downstream (&lt;=300)</p></li>
 <li><p>Other Exon</p></li>
 </ol>
-<div id="dd7363ad" class="cell" data-teaching="exercise" data-execution_count="20">
+<div id="4076708b" class="cell" data-teaching="solution" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note the answer symbol here</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>q7_answer <span class="op">=</span> <span class="st">""</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>q7_answer <span class="op">=</span> <span class="st">"A"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
 <section id="check-your-answers" class="level2">
 <h2 class="anchored" data-anchor-id="check-your-answers">Check your answers</h2>
-<p>You have now answered all 7 questions. Run the next codecell and check to see if your answers are correct.</p>
+<p>You have now answered all 7 questions. Run the next code cell and check to see if your answers are correct.</p>
 <!-- The correct code is: CAEDB!1ACBA -->
-<div id="ed3e458b" class="cell" data-execution_count="22">
+<div id="261894d5" class="cell" data-teaching="solution" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> course_utils <span class="im">import</span> check_answer</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Put your answer here</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>answers <span class="op">=</span> [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>check_answer(answers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>answers <span class="op">=</span> [q1_answer, q2_answer, q3_answer, q4_answer, q5_answer, q6_answer, q7_answer]</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>check_answer(answers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<h1 style="color: green;">🎉 Correct! Great job! 🎉</h1>
+</div>
+<div class="cell-output cell-output-display">
+<img src="https://media.giphy.com/media/X9izlczKyCpmCSZu0l/giphy.gif" width="300">
+</div>
 </div>
 </section>
 
@@ -945,6 +1047,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   });
   </script>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
