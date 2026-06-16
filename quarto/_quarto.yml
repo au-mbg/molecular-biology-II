@@ -1,15 +1,18 @@
 project:
   title: "chip_seq_2026"
   output-dir: "_render/"
-
+  render:
+    - chip_seq_2026.qmd
 
 filters:
 - strip-solution
-
+- filters/embed-ipynb-images.lua
 
 format:
-  html: default
-  ipynb: default
+  ipynb:
+    wrap: none    
+    toc: true
+    output: true    
   typst:
     number-sections: true
     number-depth: 2

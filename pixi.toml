@@ -43,6 +43,13 @@ cwd = "quarto"
 [tasks.render-all]
 depends-on = [{task="render", args=["exercise"]}, {task="render", args=["solution"]}]
 
+[tasks.build]
+depends-on = ["render-all"]
+cmd = """mkdir -p build &&
+    cp -r quarto/_render/* build/
+"""
+
+
 [pypi-dependencies]
 course-utils = { path = "course-utils", editable = true }
 mermaid-cli = ">=0.1.3, <0.2"
