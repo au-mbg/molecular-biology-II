@@ -12,7 +12,7 @@ from matplotlib.ticker import FormatStrFormatter
 try:
     import course_utils
 except ImportError:
-    %pip install -q https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/dist/course_utils-0.1.0-py3-none-any.whl
+    %pip install -q https://raw.githubusercontent.com/au-mbg/molecular-biology-II/refs/heads/main/dist/course_utils-0.1.1-py3-none-any.whl
     import course_utils
 ```
 
