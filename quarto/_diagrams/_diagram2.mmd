@@ -1,0 +1,30 @@
+%%{init: {"themeVariables": {"fontSize": "24px"}}}%%
+flowchart LR
+    summits[<code>TBP_summits.bed</code><br/>peak summit positions]
+    annotations[<code>TBP_peak_anno.csv</code><br/>genomic feature labels]
+
+    load[Load data with Python]
+    inspect[Inspect the tables]
+
+    plot1[Plot peak summits<br/>Where are TBP peaks located?]
+    plot2[Plot feature annotations<br/> genomic regions ↔ peaks?]
+
+    interpret[Biological interpretation]
+
+    summits --> load
+    annotations --> load
+    load --> inspect
+    inspect --> plot1
+    inspect --> plot2
+    plot1 --> interpret
+    plot2 --> interpret
+
+    classDef data fill:#ecfdf5,stroke:#047857,color:#064e3b
+    classDef python fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef task fill:#fef3c7,stroke:#b45309,color:#3d2b00,stroke-width:2px
+    classDef result fill:#fce7f3,stroke:#be185d,color:#831843
+
+    class summits,annotations data
+    class load python
+    class inspect,plot1,plot2 task
+    class interpret result

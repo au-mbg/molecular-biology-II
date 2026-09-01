@@ -1,0 +1,23 @@
+%%{init: {"themeVariables": {"fontSize": "24px"}}}%%
+flowchart LR
+    input[Input data<br/>Reference genome<br/>ChIP-seq reads]
+
+    align[Read alignment<br/><b>Bowtie2</b><br/>]
+
+    clean[Alignment processing<br/><b>Samtools</b><br/>]
+
+    peaks[Peak calling<br/><b>MACS3</b><br/>]
+
+    annotate[Peak annotation<br/><b>ChIPseeker</b><br/>]
+
+    output[Prepared files<br/><code>TBP_summits.bed</code><br/><code>TBP_peak_anno.csv</code>]
+
+    input --> align --> clean --> peaks --> annotate --> output
+
+    classDef input fill:#eef2ff,stroke:#64748b,color:#1e293b
+    classDef tool fill:#fef3c7,stroke:#b45309,color:#3d2b00
+    classDef output fill:#ecfdf5,stroke:#047857,color:#064e3b,stroke-width:2px
+
+    class input input
+    class align,clean,peaks,annotate tool
+    class output output
