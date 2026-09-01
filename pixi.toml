@@ -54,6 +54,10 @@ cmd = """rm -rf quarto/.quarto quarto/_render &&
     find quarto -type f -name '*.quarto_ipynb*' -delete
 """
 
+[tasks.build-wheel]
+cmd = "uv build --wheel --out-dir ../dist"
+cwd = "course-utils"
+
 
 [pypi-dependencies]
 course-utils = { path = "course-utils", editable = true }

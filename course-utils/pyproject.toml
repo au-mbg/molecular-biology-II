@@ -6,11 +6,8 @@ readme = "README.md"
 authors = [
     { name = "Mads-Peter", email = "machri@phys.au.dk" }
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.10,<4.0"
 dependencies = []
-
-[project.scripts]
-course-utils = "course_utils:main"
 
 [build-system]
 requires = ["uv_build>=0.8.18,<0.9.0"]
