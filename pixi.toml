@@ -49,6 +49,11 @@ cmd = """mkdir -p build &&
     cp -r quarto/_render/* build/
 """
 
+[tasks.clean]
+cmd = """rm -rf quarto/.quarto quarto/_render &&
+    find quarto -type f -name '*.quarto_ipynb*' -delete
+"""
+
 
 [pypi-dependencies]
 course-utils = { path = "course-utils", editable = true }
